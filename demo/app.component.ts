@@ -6,11 +6,11 @@ import 'highlight.js/styles/darkula.css';
   template: `
     <nav id="nav">
       <header><h3>Component List</h3></header>
-      <div class="navItem" (click)="state=''">Accordion</div>
+      <div class="navItem" (click)="state=''" [ngClass]="{selected: !state}">Accordion</div>
       <div class="navItem">More Soon</div>
     </nav>
     <content id="content">
-      <div id="appbar"></div>
+      <div id="appbar"><h3>{{state ? state : 'Accordion'}}</h3></div>
       <j3-accordion-demo class="demo" *ngIf="!state"></j3-accordion-demo>
     </content>
 `,
@@ -35,6 +35,9 @@ import 'highlight.js/styles/darkula.css';
     height: 48px;
     line-height: 48px;
   }
+  .navItem.selected {
+    background-color: #195cb7;
+  }
   .navItem:hover {
       cursor: pointer;
     background-color: #195cb7;
@@ -50,8 +53,10 @@ import 'highlight.js/styles/darkula.css';
   }
   
   #appbar {
+    left: 300px;
+    padding-left: 12px;
     position: fixed;
-    top: 0;
+    top: -3px;
     width: 100%;
     display: block;
     height: 64px;
