@@ -11,7 +11,7 @@ Check out the [demos](http://j3ddesign.github.io/angular-components/) for more i
   - Follows accessibility guidelines
   - Responsive animation 
 
-## Installation // coming soon
+## Installation
 To use j3ng-components in your project install it via [npm](https://www.npmjs.com/package/j3ng-components):
 ```
 npm i j3ng-components -S
