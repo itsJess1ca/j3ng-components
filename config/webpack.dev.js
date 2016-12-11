@@ -75,7 +75,7 @@ module.exports = function(options) {
       new HtmlWebpackPlugin({
         template: 'demo/index.ejs',
         chunksSortMode: 'dependency',
-        title: 'angular2-data-table'
+        title: 'j3ng-components'
       }),
       new WebpackNotifierPlugin({
         excludeWarnings: true

@@ -1,5 +1,5 @@
 /**
- * angular2-data-table v"0.0.3" (https://github.com/swimlane/angular2-data-table)
+ * j3ng-components v"0.0.3" (https://github.com/j3ddesign/j3ng-components)
  * Copyright 2016
  * Licensed under MIT
  */

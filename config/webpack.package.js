@@ -9,7 +9,7 @@ const { ENV, dir, APP_VERSION } = require('./helpers');
 
 const banner =
 `/**
- * angular2-data-table v${APP_VERSION} (https://github.com/swimlane/angular2-data-table)
+ * j3ng-components v${APP_VERSION} (https://github.com/j3ddesign/j3ng-components)
  * Copyright 2016
  * Licensed under MIT
  */`;
@@ -51,7 +51,7 @@ module.exports = function(env) {
     output: {
       path: dir('release'),
       libraryTarget: 'umd',
-      library: 'angular2-data-table',
+      library: 'j3ng-components',
       umdNamedDefine: true
     },
     externals: {
