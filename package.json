@@ -1,6 +1,6 @@
 {
   "name": "angular-components",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "angular-components is a collection of components for Angular(2).",
   "main": "release/index.js",
   "typings": "release/index.d.ts",
