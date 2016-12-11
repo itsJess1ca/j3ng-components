@@ -84,8 +84,8 @@ export class AccordionComponent implements AfterViewInit {
           .setElementStyle(panel.el.nativeElement, 'transform',
             `translateY(${baseY + (this.headerSize * index)}px)`);
 
-        /*this.renderer
-          .setElementStyle(panel.content.nativeElement, 'height', `${this.availableHeight}px`);*/
+        this.renderer
+          .setElementStyle(panel.content.nativeElement, 'height', `${this.availableHeight}px`);
 
         if (panel.expanded) {
           baseY = this.availableHeight;

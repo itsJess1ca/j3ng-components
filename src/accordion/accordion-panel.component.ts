@@ -69,7 +69,6 @@ import { AccordionPanel } from './accordion.component';
     
     .panelChild {
       height: 48px;
-      width: 100%;
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
