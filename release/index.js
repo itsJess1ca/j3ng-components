@@ -7,11 +7,11 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("@angular/common"), require("@angular/core"));
 	else if(typeof define === 'function' && define.amd)
-		define("angular2-data-table", ["@angular/common", "@angular/core"], factory);
+		define("j3ng-components", ["@angular/common", "@angular/core"], factory);
 	else if(typeof exports === 'object')
-		exports["angular2-data-table"] = factory(require("@angular/common"), require("@angular/core"));
+		exports["j3ng-components"] = factory(require("@angular/common"), require("@angular/core"));
 	else
-		root["angular2-data-table"] = factory(root["@angular/common"], root["@angular/core"]);
+		root["j3ng-components"] = factory(root["@angular/common"], root["@angular/core"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_0__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -16960,14 +16960,14 @@ __export(__webpack_require__("./src/accordion/accordion.component.ts"));
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__export(__webpack_require__("./src/streamshape.module.ts"));
+__export(__webpack_require__("./src/j3components.module.ts"));
 __export(__webpack_require__("./src/accordion/index.ts"));
 __export(__webpack_require__("./src/syntax-highlighter/index.ts"));
 
 
 /***/ },
 
-/***/ "./src/streamshape.module.ts":
+/***/ "./src/j3components.module.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";

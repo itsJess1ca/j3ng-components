@@ -33,4 +33,4 @@ J3ComponentsModule = __decorate([
     __metadata("design:paramtypes", [])
 ], J3ComponentsModule);
 exports.J3ComponentsModule = J3ComponentsModule;
-//# sourceMappingURL=streamshape.module.js.map
+//# sourceMappingURL=j3components.module.js.map
