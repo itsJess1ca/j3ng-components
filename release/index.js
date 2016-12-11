@@ -16938,6 +16938,20 @@ exports.AccordionModule = AccordionModule;
 
 /***/ },
 
+/***/ "./src/accordion/index.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/accordion/accordion.module.ts"));
+__export(__webpack_require__("./src/accordion/accordion.component.ts"));
+
+
+/***/ },
+
 /***/ "./src/index.ts":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -16947,6 +16961,8 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 __export(__webpack_require__("./src/streamshape.module.ts"));
+__export(__webpack_require__("./src/accordion/index.ts"));
+__export(__webpack_require__("./src/syntax-highlighter/index.ts"));
 
 
 /***/ },
@@ -16990,6 +17006,19 @@ J3ComponentsModule = __decorate([
     __metadata("design:paramtypes", [])
 ], J3ComponentsModule);
 exports.J3ComponentsModule = J3ComponentsModule;
+
+
+/***/ },
+
+/***/ "./src/syntax-highlighter/index.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/syntax-highlighter/syntax-highlighter.module.ts"));
 
 
 /***/ },
