@@ -1,6 +1,6 @@
 {
   "name": "j3ng-components",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "j3ng-components is a collection of components for Angular(2).",
   "main": "release/index.js",
   "typings": "release/index.d.ts",
