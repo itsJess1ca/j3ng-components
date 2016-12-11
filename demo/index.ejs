@@ -1,0 +1,55 @@
+<html>
+
+<head>
+  <title>Angular2 Datatable</title>
+
+  <!-- Name of web application (only should be used if the website is used as an app) -->
+  <meta name="application-name" content="angular-components">
+
+  <!-- Short description of the page (limit to 150 characters) -->
+  <meta name="description" content="A collection of Angular (2) components." />
+
+  <!-- Short description of your site's subject -->
+  <meta name="subject" content="Angular Components">
+
+  <!-- Very short (10 words or less) description. Primarily for academic papers -->
+  <meta name="abstract" content="Angular Components">
+
+  <!-- Crawling: All Search Engines -->
+  <meta name="robots" content="index,follow,noodp">
+
+  <!-- Crawling: Google Specific -->
+  <meta name="googlebot" content="index,follow">
+
+  <!-- Scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- IE -->
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta http-equiv="cleartype" content="on">
+
+  <link rel="stylesheet" href="assets/app.css">
+  <script src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+  <app>Loading...</app>
+  <div class="github-button-wrap">
+    <a class="github-button" href="https://github.com/j3ddesign/angular-components" data-style="mega" data-count-href="/j3ddesign/angular-components/stargazers" data-count-api="/repos/j3ddesign/angular-components#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star j3ddesign/angular-components on GitHub">Star</a>
+  </div>
+
+  <% if (htmlWebpackPlugin.options.googleAnalytics) { %>
+    <script type="text/javascript">
+      window.GoogleAnalyticsObject='ga';window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+      <% if (htmlWebpackPlugin.options.googleAnalytics.trackingId) { %>
+      ga('create','<%= htmlWebpackPlugin.options.googleAnalytics.trackingId %>','auto');
+      <% } else { throw new Error("html-webpack-template requires googleAnalytics.trackingId config"); } %>
+      <% if (htmlWebpackPlugin.options.googleAnalytics.pageViewOnLoad) { %>
+      ga('send','pageview')
+      <% } %>
+    </script>
+    <script async defer src="https://www.google-analytics.com/analytics.js" type="text/javascript"></script>
+    <% } %>
+</body>
+
+</html>
