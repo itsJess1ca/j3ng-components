@@ -30,6 +30,7 @@ import 'highlight.js/styles/darkula.css';
     height: 100%;
     width: 300px;
     z-index: 2;
+    box-shadow: 0 1px 7px 1px rgba(0,0,0,0.3);
   }
   .navItem {
     height: 48px;
@@ -61,7 +62,8 @@ import 'highlight.js/styles/darkula.css';
     display: block;
     height: 64px;
     background-color: #1976d2;
-    z-index: 1;
+    z-index: 2;
+    box-shadow: 5px 2px 7px 1px rgba(0,0,0,0.3);
   }
   
   .demo {
