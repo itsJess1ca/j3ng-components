@@ -42,7 +42,6 @@ var AccordionComponent = (function () {
     };
     AccordionComponent.prototype.movePanels = function () {
         var _this = this;
-        console.log('moving panels');
         if (this.panels && this.panels.length === 0)
             return;
         var baseY = 0;

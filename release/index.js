@@ -1,5 +1,5 @@
 /**
- * j3ng-components v"0.0.5" (https://github.com/j3ddesign/j3ng-components)
+ * j3ng-components v"0.0.6" (https://github.com/j3ddesign/j3ng-components)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -16846,7 +16846,6 @@ var AccordionComponent = (function () {
     };
     AccordionComponent.prototype.movePanels = function () {
         var _this = this;
-        console.log('moving panels');
         if (this.panels && this.panels.length === 0)
             return;
         var baseY = 0;

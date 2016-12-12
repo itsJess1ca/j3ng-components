@@ -77,7 +77,6 @@ export class AccordionComponent implements AfterViewInit {
   }
 
   private movePanels() {
-    console.log('moving panels');
     if (this.panels && this.panels.length === 0) return;
 
     let baseY = 0;
