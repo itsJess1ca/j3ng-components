@@ -5,6 +5,7 @@ export declare class AccordionComponent implements AfterViewInit {
     private zone;
     panels: AccordionPanel[];
     selected: EventEmitter<string>;
+    initialized: boolean;
     private _panels;
     private headerSize;
     private availableHeight;

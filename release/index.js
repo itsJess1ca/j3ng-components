@@ -1,5 +1,5 @@
 /**
- * j3ng-components v"0.0.6" (https://github.com/j3ddesign/j3ng-components)
+ * j3ng-components v"0.0.8" (https://github.com/j3ddesign/j3ng-components)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -16787,7 +16787,7 @@ __decorate([
 AccordionPanelComponent = __decorate([
     core_1.Component({
         selector: 'j3-accordion-panel',
-        styles: ["\n    :host {\n      position: absolute;\n      display: flex;\n      flex-flow: column nowrap;\n      width: 100%;\n      will-change: transform;\n      transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);\n    }\n    \n    #tabContent {\n      overflow-x: hidden;\n      overflow-y: auto;\n    }\n    \n    .panelHeader {\n      display: flex;\n      flex-flow: row nowrap;\n      align-items: center;\n      padding: 0 12px;\n      height: 48px;\n      border: none;\n      border-bottom: 1px solid rgba(0,0,0,0.16);\n      position: relative;\n    }\n    .panelHeader:after {\n      content: '';\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 100%;\n      height: 100%;\n      background-color: rgba(0,0,0,0.26);\n      opacity: 0;\n    }\n    .panelHeader:focus {\n      outline: none;\n    }\n    .panelHeader:hover {\n      cursor: pointer;\n    }\n    .panelHeader:focus:after, .panelHeader:hover:after {\n      opacity: 1;\n    }\n    \n    .panelName {\n      margin: 0;\n      font-variant: all-small-caps;\n    }\n    \n    #panelChildren {\n      list-style-type: none;\n      margin: 0;\n      padding: 0;\n    }\n    \n    .panelChild {\n      height: 48px;\n      display: flex;\n      flex-flow: row nowrap;\n      align-items: center;\n      position: relative;\n      padding: 0 12px;\n    }\n    .panelChild:hover {\n        cursor: pointer;\n    }\n  "],
+        styles: ["\n    :host {\n      position: absolute;\n      display: flex;\n      flex-flow: column nowrap;\n      width: 100%;\n      will-change: transform;\n    }\n    :host(.animatable) {\n      transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);    \n    }\n    \n    #tabContent {\n      overflow-x: hidden;\n      overflow-y: auto;\n    }\n    \n    .panelHeader {\n      display: flex;\n      flex-flow: row nowrap;\n      align-items: center;\n      padding: 0 12px;\n      height: 48px;\n      border: none;\n      border-bottom: 1px solid rgba(0,0,0,0.16);\n      position: relative;\n    }\n    .panelHeader:after {\n      content: '';\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 100%;\n      height: 100%;\n      background-color: rgba(0,0,0,0.26);\n      opacity: 0;\n    }\n    .panelHeader:focus {\n      outline: none;\n    }\n    .panelHeader:hover {\n      cursor: pointer;\n    }\n    .panelHeader:focus:after, .panelHeader:hover:after {\n      opacity: 1;\n    }\n    \n    .panelName {\n      margin: 0;\n      font-variant: all-small-caps;\n    }\n    \n    #panelChildren {\n      list-style-type: none;\n      margin: 0;\n      padding: 0;\n    }\n    \n    .panelChild {\n      height: 48px;\n      display: flex;\n      flex-flow: row nowrap;\n      align-items: center;\n      position: relative;\n      padding: 0 12px;\n    }\n    .panelChild:hover {\n        cursor: pointer;\n    }\n  "],
         template: "\n    <button\n      id=\"{{panelName}}\"\n      class=\"panelHeader\"\n      role=\"tab\"\n      (click)=\"togglePanel()\"\n      #header\n    >\n      <i class=\"material-icons\" *ngIf=\"panel.icon\">{{panel.icon}}</i><h4 class=\"panelName\">&nbsp;{{panel.name}}</h4>\n    </button>\n    <div \n      id=\"tabContent\" \n      #content\n      role=\"tabpanel\"\n      [attr.aria-labelledby]=\"panelName\"\n    >\n      <ul id=\"panelChildren\">\n        <li \n          class=\"panelChild\" \n          *ngFor=\"let child of panel.items\" \n          (click)=\"action.emit({panel: panel.name, item: child})\"\n        >\n          {{child}}\n        </li>\n      </ul>\n    </div>\n",
         changeDetection: core_1.ChangeDetectionStrategy.OnPush
     }),
@@ -16821,6 +16821,7 @@ var AccordionComponent = (function () {
         this.zone = zone;
         this.panels = [];
         this.selected = new core_1.EventEmitter();
+        this.initialized = false;
     }
     AccordionComponent.prototype.ngAfterViewInit = function () {
         this.calculateGeometries();
@@ -16857,9 +16858,11 @@ var AccordionComponent = (function () {
                         .setElementStyle(panel.el.nativeElement, 'transform', "translateY(" + (baseY + (_this.headerSize * index)) + "px)");
                     _this.renderer
                         .setElementStyle(panel.content.nativeElement, 'height', _this.availableHeight + "px");
-                    if (panel.expanded) {
+                    if (panel.expanded)
                         baseY = _this.availableHeight;
-                    }
+                    // panels are in place - we can enable animations
+                    if (!_this.initialized && index === _this._panels.length - 1)
+                        _this.initialized = true;
                 });
             });
         });
@@ -16881,7 +16884,7 @@ __decorate([
 AccordionComponent = __decorate([
     core_1.Component({
         selector: 'j3-accordion',
-        template: "\n    <j3-accordion-panel\n      class=\"accordion-panel\"\n      *ngFor=\"let panel of panels; let i = index;\"\n      [panel]=\"panel\"\n      [index]=\"i\"\n      (expand)=\"expandAccordion($event)\"\n      (action)=\"navigateTo($event)\"\n      role=\"tabpanel\"\n    ></j3-accordion-panel>\n  ",
+        template: "\n    <j3-accordion-panel\n      class=\"accordion-panel\"\n      [ngClass]=\"{animatable: initialized}\"\n      *ngFor=\"let panel of panels; let i = index;\"\n      [panel]=\"panel\"\n      [index]=\"i\"\n      (expand)=\"expandAccordion($event)\"\n      (action)=\"navigateTo($event)\"\n      role=\"tabpanel\"\n    ></j3-accordion-panel>\n  ",
         styles: [
             ":host {\n      display: block;\n      overflow: hidden;\n      position: relative;\n    }\n"
         ],

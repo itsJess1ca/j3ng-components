@@ -17,6 +17,7 @@ var AccordionComponent = (function () {
         this.zone = zone;
         this.panels = [];
         this.selected = new core_1.EventEmitter();
+        this.initialized = false;
     }
     AccordionComponent.prototype.ngAfterViewInit = function () {
         this.calculateGeometries();
@@ -53,9 +54,11 @@ var AccordionComponent = (function () {
                         .setElementStyle(panel.el.nativeElement, 'transform', "translateY(" + (baseY + (_this.headerSize * index)) + "px)");
                     _this.renderer
                         .setElementStyle(panel.content.nativeElement, 'height', _this.availableHeight + "px");
-                    if (panel.expanded) {
+                    if (panel.expanded)
                         baseY = _this.availableHeight;
-                    }
+                    // panels are in place - we can enable animations
+                    if (!_this.initialized && index === _this._panels.length - 1)
+                        _this.initialized = true;
                 });
             });
         });
@@ -77,7 +80,7 @@ __decorate([
 AccordionComponent = __decorate([
     core_1.Component({
         selector: 'j3-accordion',
-        template: "\n    <j3-accordion-panel\n      class=\"accordion-panel\"\n      *ngFor=\"let panel of panels; let i = index;\"\n      [panel]=\"panel\"\n      [index]=\"i\"\n      (expand)=\"expandAccordion($event)\"\n      (action)=\"navigateTo($event)\"\n      role=\"tabpanel\"\n    ></j3-accordion-panel>\n  ",
+        template: "\n    <j3-accordion-panel\n      class=\"accordion-panel\"\n      [ngClass]=\"{animatable: initialized}\"\n      *ngFor=\"let panel of panels; let i = index;\"\n      [panel]=\"panel\"\n      [index]=\"i\"\n      (expand)=\"expandAccordion($event)\"\n      (action)=\"navigateTo($event)\"\n      role=\"tabpanel\"\n    ></j3-accordion-panel>\n  ",
         styles: [
             ":host {\n      display: block;\n      overflow: hidden;\n      position: relative;\n    }\n"
         ],
