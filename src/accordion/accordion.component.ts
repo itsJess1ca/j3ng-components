@@ -9,6 +9,7 @@ import { AccordionPanelComponent } from './accordion-panel.component';
   template: `
     <j3-accordion-panel
       class="accordion-panel"
+      [ngClass]="{animatable: initialized}"
       *ngFor="let panel of panels; let i = index;"
       [panel]="panel"
       [index]="i"
@@ -36,6 +37,8 @@ export class AccordionComponent implements AfterViewInit {
 
   @Output()
   selected: EventEmitter<string> = new EventEmitter();
+
+  initialized: boolean = false;
 
   @ViewChildren(AccordionPanelComponent)
   private _panels: QueryList<AccordionPanelComponent>;
@@ -92,9 +95,10 @@ export class AccordionComponent implements AfterViewInit {
           this.renderer
             .setElementStyle(panel.content.nativeElement, 'height', `${this.availableHeight}px`);
 
-          if (panel.expanded) {
-            baseY = this.availableHeight;
-          }
+          if (panel.expanded) baseY = this.availableHeight;
+
+          // panels are in place - we can enable animations
+          if (!this.initialized && index === this._panels.length - 1) this.initialized = true;
         });
       });
     });

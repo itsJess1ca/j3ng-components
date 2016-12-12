@@ -18,7 +18,9 @@ import { AccordionPanel } from './accordion.component';
       flex-flow: column nowrap;
       width: 100%;
       will-change: transform;
-      transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);
+    }
+    :host(.animatable) {
+      transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);    
     }
     
     #tabContent {
