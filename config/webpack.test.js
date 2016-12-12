@@ -21,7 +21,7 @@ module.exports = function(env) {
           loader: 'awesome-typescript-loader',
           query: {
             sourceMap: false,
-            inlineSourceMap: true,
+            //inlineSourceMap: true,
             compilerOptions: {
               removeComments: true
             }

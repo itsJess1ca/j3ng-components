@@ -1,6 +1,6 @@
 import {
   Component, Input, Renderer, ElementRef, QueryList,
-  ViewChildren, AfterViewInit, Output, EventEmitter
+  ViewChildren, AfterViewInit, Output, EventEmitter, NgZone
 } from '@angular/core';
 import { AccordionPanelComponent } from './accordion-panel.component';
 
@@ -26,8 +26,8 @@ import { AccordionPanelComponent } from './accordion-panel.component';
 `
   ],
   host: {
-    'attr.role': 'tablist',
-    'attr.aria-multiselectable': 'true'
+    role: 'tablist',
+    'aria-multiselectable': 'true'
   }
 })
 export class AccordionComponent implements AfterViewInit {
@@ -43,7 +43,11 @@ export class AccordionComponent implements AfterViewInit {
   private headerSize: number;
   private availableHeight;
 
-  constructor(private renderer: Renderer, private el: ElementRef) { }
+  constructor(
+    private renderer: Renderer,
+    private el: ElementRef,
+    private zone: NgZone
+  ) { }
 
   ngAfterViewInit() {
     this.calculateGeometries();
@@ -58,7 +62,7 @@ export class AccordionComponent implements AfterViewInit {
     });
 
     this._panels.toArray()[expandedIndex].expanded = true;
-    requestAnimationFrame(() => this.movePanels());
+    this.movePanels();
   }
 
   protected navigateTo(event) {
@@ -73,23 +77,26 @@ export class AccordionComponent implements AfterViewInit {
   }
 
   private movePanels() {
+    console.log('moving panels');
     if (this.panels && this.panels.length === 0) return;
 
     let baseY = 0;
     this._panels.forEach((panel, index) => {
-      requestAnimationFrame(() => {
+      this.zone.runOutsideAngular(() => {
+        requestAnimationFrame(() => {
 
-        // Set the transform position of the element to correct position
-        this.renderer
-          .setElementStyle(panel.el.nativeElement, 'transform',
-            `translateY(${baseY + (this.headerSize * index)}px)`);
+          // Set the transform position of the element to correct position
+          this.renderer
+            .setElementStyle(panel.el.nativeElement, 'transform',
+              `translateY(${baseY + (this.headerSize * index)}px)`);
 
-        this.renderer
-          .setElementStyle(panel.content.nativeElement, 'height', `${this.availableHeight}px`);
+          this.renderer
+            .setElementStyle(panel.content.nativeElement, 'height', `${this.availableHeight}px`);
 
-        if (panel.expanded) {
-          baseY = this.availableHeight;
-        }
+          if (panel.expanded) {
+            baseY = this.availableHeight;
+          }
+        });
       });
     });
   }

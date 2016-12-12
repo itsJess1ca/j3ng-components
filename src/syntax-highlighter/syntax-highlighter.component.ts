@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit, Input } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, Input, NgZone } from '@angular/core';
 import * as hljs from 'highlight.js';
 
 @Component({
@@ -25,11 +25,13 @@ export class SyntaxHighlighterComponent implements AfterViewInit {
   @Input()
   language: 'typescript' | 'scss' | 'html' | null = null;
 
+  constructor(private zone: NgZone) {}
+
   ngAfterViewInit() {
     hljs.configure({
       tabReplace: '  ', // 2 spaces,
       languages: ['scss', 'typescript', 'html']
     });
-    hljs.highlightBlock(this.code.nativeElement);
+    this.zone.runOutsideAngular(() => hljs.highlightBlock(this.code.nativeElement));
   }
 }

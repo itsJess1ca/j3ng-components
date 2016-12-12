@@ -94,27 +94,27 @@ import { AccordionPanel } from '../../src/accordion/accordion.component';
         language="scss"
       >
         #my-accordion {{"{"}}
-        height: 480px;
-        min-width: 300px;
-        width: 300px;
-        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 15px 0 rgba(0,0,0,0.12);
-        border-radius: 3px;
+          height: 480px;
+          min-width: 300px;
+          width: 300px;
+          box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 15px 0 rgba(0,0,0,0.12);
+          border-radius: 3px;
         {{"}"}}
     
         #my-accordion /deep/ .accordion-panel {{"{"}}
-        background-color: #fff;
+          background-color: #fff;
         {{"}"}}
     
         #my-accordion /deep/ .accordion-panel .panelHeader {{"{"}}
-        height: 48px;
-        line-height: 48px;
-        background-color: #1976d2;
-        color: #fff;
-        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 15px 0 rgba(0,0,0,0.12);
+          height: 48px;
+          line-height: 48px;
+          background-color: #1976d2;
+          color: #fff;
+          box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 15px 0 rgba(0,0,0,0.12);
         {{"}"}}
     
         #my-accordion /deep/ .accordion-panel .panelHeader .panelName {{"{"}}
-        font-size: 1.5em;
+          font-size: 1.5em;
         {{"}"}}
       </j3-syntax-highlighter>
     </section>
