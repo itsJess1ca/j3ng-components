@@ -18,4 +18,4 @@ npm i j3ng-components -S
 ```
 
 ## Credits
-`Angular2 Components` is an open-source project;
+`j3ng-components` is an open-source project;
