@@ -11,9 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var accordion_panel_component_1 = require("./accordion-panel.component");
 var AccordionComponent = (function () {
-    function AccordionComponent(renderer, el) {
+    function AccordionComponent(renderer, el, zone) {
         this.renderer = renderer;
         this.el = el;
+        this.zone = zone;
         this.panels = [];
         this.selected = new core_1.EventEmitter();
     }
@@ -22,14 +23,13 @@ var AccordionComponent = (function () {
         this.movePanels();
     };
     AccordionComponent.prototype.expandAccordion = function (expandedIndex) {
-        var _this = this;
         if (this._panels && this._panels.length === 0)
             return;
         this._panels.forEach(function (panel) {
             panel.expanded = false;
         });
         this._panels.toArray()[expandedIndex].expanded = true;
-        requestAnimationFrame(function () { return _this.movePanels(); });
+        this.movePanels();
     };
     AccordionComponent.prototype.navigateTo = function (event) {
         this.selected.emit(event);
@@ -42,19 +42,22 @@ var AccordionComponent = (function () {
     };
     AccordionComponent.prototype.movePanels = function () {
         var _this = this;
+        console.log('moving panels');
         if (this.panels && this.panels.length === 0)
             return;
         var baseY = 0;
         this._panels.forEach(function (panel, index) {
-            requestAnimationFrame(function () {
-                // Set the transform position of the element to correct position
-                _this.renderer
-                    .setElementStyle(panel.el.nativeElement, 'transform', "translateY(" + (baseY + (_this.headerSize * index)) + "px)");
-                _this.renderer
-                    .setElementStyle(panel.content.nativeElement, 'height', _this.availableHeight + "px");
-                if (panel.expanded) {
-                    baseY = _this.availableHeight;
-                }
+            _this.zone.runOutsideAngular(function () {
+                requestAnimationFrame(function () {
+                    // Set the transform position of the element to correct position
+                    _this.renderer
+                        .setElementStyle(panel.el.nativeElement, 'transform', "translateY(" + (baseY + (_this.headerSize * index)) + "px)");
+                    _this.renderer
+                        .setElementStyle(panel.content.nativeElement, 'height', _this.availableHeight + "px");
+                    if (panel.expanded) {
+                        baseY = _this.availableHeight;
+                    }
+                });
             });
         });
     };
@@ -80,11 +83,13 @@ AccordionComponent = __decorate([
             ":host {\n      display: block;\n      overflow: hidden;\n      position: relative;\n    }\n"
         ],
         host: {
-            'attr.role': 'tablist',
-            'attr.aria-multiselectable': 'true'
+            role: 'tablist',
+            'aria-multiselectable': 'true'
         }
     }),
-    __metadata("design:paramtypes", [core_1.Renderer, core_1.ElementRef])
+    __metadata("design:paramtypes", [core_1.Renderer,
+        core_1.ElementRef,
+        core_1.NgZone])
 ], AccordionComponent);
 exports.AccordionComponent = AccordionComponent;
 //# sourceMappingURL=accordion.component.js.map

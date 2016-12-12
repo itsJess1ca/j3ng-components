@@ -11,16 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var hljs = require("highlight.js");
 var SyntaxHighlighterComponent = (function () {
-    function SyntaxHighlighterComponent() {
+    function SyntaxHighlighterComponent(zone) {
+        this.zone = zone;
         this.label = null;
         this.language = null;
     }
     SyntaxHighlighterComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
         hljs.configure({
             tabReplace: '  ',
             languages: ['scss', 'typescript', 'html']
         });
-        hljs.highlightBlock(this.code.nativeElement);
+        this.zone.runOutsideAngular(function () { return hljs.highlightBlock(_this.code.nativeElement); });
     };
     return SyntaxHighlighterComponent;
 }());
@@ -44,7 +46,7 @@ SyntaxHighlighterComponent = __decorate([
         ],
         template: "<pre>\n    <span id=\"label\" *ngIf=\"label\">{{label}}</span>\n    <code #code class=\"{{language ? language : ''}}\">\n      <ng-content></ng-content>\n    </code>\n  </pre>"
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [core_1.NgZone])
 ], SyntaxHighlighterComponent);
 exports.SyntaxHighlighterComponent = SyntaxHighlighterComponent;
 //# sourceMappingURL=syntax-highlighter.component.js.map
