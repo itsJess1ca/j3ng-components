@@ -4,7 +4,7 @@
 
 It was built for modern browsers using _TypeScript, CSS3 and HTML5_ and Angular `~2.0.0`.
 
-Check out the [demos](http://j3ddesign.github.io/angular-components/) for more information!
+Check out the [demos](https://j3ddesign.github.io/j3ng-components/) for more information!
 
 ## Features
 - Accordion
