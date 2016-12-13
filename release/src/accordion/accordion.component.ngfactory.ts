@@ -144,7 +144,7 @@ export class View_AccordionComponent0 extends import2.AppView<import0.AccordionC
         this._viewQuery_AccordionPanelComponent_0.reset([this._vc_1.mapNestedViews(View_AccordionComponent1,(nestedView:View_AccordionComponent1):any => {
           return [nestedView._AccordionPanelComponent_0_4.context];
       })]);
-      this.context._panels = this._viewQuery_AccordionPanelComponent_0;
+      this.context.panelElements = this._viewQuery_AccordionPanelComponent_0;
       this._viewQuery_AccordionPanelComponent_0.notifyOnChanges();
     } }
   }

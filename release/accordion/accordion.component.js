@@ -15,29 +15,29 @@ var AccordionComponent = (function () {
         this.movePanels();
     };
     AccordionComponent.prototype.expandAccordion = function (expandedIndex) {
-        if (this._panels && this._panels.length === 0)
+        if (this.panelElements && this.panelElements.length === 0)
             return;
-        this._panels.forEach(function (panel) {
+        this.panelElements.forEach(function (panel) {
             panel.expanded = false;
         });
-        this._panels.toArray()[expandedIndex].expanded = true;
+        this.panelElements.toArray()[expandedIndex].expanded = true;
         this.movePanels();
     };
     AccordionComponent.prototype.navigateTo = function (event) {
         this.selected.emit(event);
     };
     AccordionComponent.prototype.calculateGeometries = function () {
-        if (this._panels && this._panels.length === 0)
+        if (this.panelElements && this.panelElements.length === 0)
             return;
-        this.headerSize = this._panels.first.headerHeight;
-        this.availableHeight = this.el.nativeElement.offsetHeight - (this._panels.length * this.headerSize);
+        this.headerSize = this.panelElements.first.headerHeight;
+        this.availableHeight = this.el.nativeElement.offsetHeight - (this.panelElements.length * this.headerSize);
     };
     AccordionComponent.prototype.movePanels = function () {
         var _this = this;
         if (this.panels && this.panels.length === 0)
             return;
         var baseY = 0;
-        this._panels.forEach(function (panel, index) {
+        this.panelElements.forEach(function (panel, index) {
             _this.zone.runOutsideAngular(function () {
                 requestAnimationFrame(function () {
                     // Set the transform position of the element to correct position
@@ -48,7 +48,7 @@ var AccordionComponent = (function () {
                     if (panel.expanded)
                         baseY = _this.availableHeight;
                     // panels are in place - we can enable animations
-                    if (!_this.initialized && index === _this._panels.length - 1)
+                    if (!_this.initialized && index === _this.panelElements.length - 1)
                         _this.initialized = true;
                 });
             });
@@ -76,7 +76,7 @@ var AccordionComponent = (function () {
     AccordionComponent.propDecorators = {
         'panels': [{ type: core_1.Input },],
         'selected': [{ type: core_1.Output },],
-        '_panels': [{ type: core_1.ViewChildren, args: [accordion_panel_component_1.AccordionPanelComponent,] },],
+        'panelElements': [{ type: core_1.ViewChildren, args: [accordion_panel_component_1.AccordionPanelComponent,] },],
     };
     return AccordionComponent;
 }());

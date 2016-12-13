@@ -41,10 +41,10 @@ export class AccordionComponent implements AfterViewInit {
   initialized: boolean = false;
 
   @ViewChildren(AccordionPanelComponent)
-  private _panels: QueryList<AccordionPanelComponent>;
+  panelElements: QueryList<AccordionPanelComponent>;
 
-  private headerSize: number;
-  private availableHeight;
+  headerSize: number;
+  availableHeight: number;
 
   constructor(
     private renderer: Renderer,
@@ -58,13 +58,13 @@ export class AccordionComponent implements AfterViewInit {
   }
 
   protected expandAccordion(expandedIndex: number) {
-    if (this._panels && this._panels.length === 0) return;
+    if (this.panelElements && this.panelElements.length === 0) return;
 
-    this._panels.forEach(panel => {
+    this.panelElements.forEach(panel => {
       panel.expanded = false;
     });
 
-    this._panels.toArray()[expandedIndex].expanded = true;
+    this.panelElements.toArray()[expandedIndex].expanded = true;
     this.movePanels();
   }
 
@@ -73,17 +73,17 @@ export class AccordionComponent implements AfterViewInit {
   }
 
   private calculateGeometries() {
-    if (this._panels && this._panels.length === 0) return;
+    if (this.panelElements && this.panelElements.length === 0) return;
 
-    this.headerSize = this._panels.first.headerHeight;
-    this.availableHeight = this.el.nativeElement.offsetHeight - (this._panels.length * this.headerSize);
+    this.headerSize = this.panelElements.first.headerHeight;
+    this.availableHeight = this.el.nativeElement.offsetHeight - (this.panelElements.length * this.headerSize);
   }
 
   private movePanels() {
     if (this.panels && this.panels.length === 0) return;
 
     let baseY = 0;
-    this._panels.forEach((panel, index) => {
+    this.panelElements.forEach((panel, index) => {
       this.zone.runOutsideAngular(() => {
         requestAnimationFrame(() => {
 
@@ -98,7 +98,7 @@ export class AccordionComponent implements AfterViewInit {
           if (panel.expanded) baseY = this.availableHeight;
 
           // panels are in place - we can enable animations
-          if (!this.initialized && index === this._panels.length - 1) this.initialized = true;
+          if (!this.initialized && index === this.panelElements.length - 1) this.initialized = true;
         });
       });
     });

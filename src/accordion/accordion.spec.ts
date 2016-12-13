@@ -50,7 +50,7 @@ describe('Accordion component',  () => {
       fixture.detectChanges();
 
       expect(fixture.componentInstance.panels).toEqual(initialSetup);
-      expect(fixture.componentInstance._panels.length).toBe(initialSetup.length);
+      expect(fixture.componentInstance.panelElements.length).toBe(initialSetup.length);
 
       fixture.componentInstance.panels = [...initialSetup, {
         name: 'Panel 3',
@@ -64,7 +64,7 @@ describe('Accordion component',  () => {
       fixture.detectChanges();
 
       expect(fixture.componentInstance.panels).not.toEqual(initialSetup);
-      expect(fixture.componentInstance._panels.length).toBe(initialSetup.length + 1);
+      expect(fixture.componentInstance.panelElements.length).toBe(initialSetup.length + 1);
     });
 
     it('should calculate geometries', () => {

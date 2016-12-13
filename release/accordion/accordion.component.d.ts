@@ -1,4 +1,5 @@
-import { Renderer, ElementRef, AfterViewInit, EventEmitter, NgZone } from '@angular/core';
+import { Renderer, ElementRef, QueryList, AfterViewInit, EventEmitter, NgZone } from '@angular/core';
+import { AccordionPanelComponent } from './accordion-panel.component';
 export declare class AccordionComponent implements AfterViewInit {
     private renderer;
     private el;
@@ -6,9 +7,9 @@ export declare class AccordionComponent implements AfterViewInit {
     panels: AccordionPanel[];
     selected: EventEmitter<string>;
     initialized: boolean;
-    private _panels;
-    private headerSize;
-    private availableHeight;
+    panelElements: QueryList<AccordionPanelComponent>;
+    headerSize: number;
+    availableHeight: number;
     constructor(renderer: Renderer, el: ElementRef, zone: NgZone);
     ngAfterViewInit(): void;
     protected expandAccordion(expandedIndex: number): void;
