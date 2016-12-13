@@ -1,15 +1,6 @@
 "use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = require("@angular/core");
-var accordion_panel_component_1 = require("./accordion-panel.component");
+var core_1 = require('@angular/core');
+var accordion_panel_component_1 = require('./accordion-panel.component');
 var AccordionComponent = (function () {
     function AccordionComponent(renderer, el, zone) {
         this.renderer = renderer;
@@ -63,35 +54,31 @@ var AccordionComponent = (function () {
             });
         });
     };
+    AccordionComponent.decorators = [
+        { type: core_1.Component, args: [{
+                    selector: 'j3-accordion',
+                    template: "\n    <j3-accordion-panel\n      class=\"accordion-panel\"\n      [ngClass]=\"{animatable: initialized}\"\n      *ngFor=\"let panel of panels; let i = index;\"\n      [panel]=\"panel\"\n      [index]=\"i\"\n      (expand)=\"expandAccordion($event)\"\n      (action)=\"navigateTo($event)\"\n      role=\"tabpanel\"\n    ></j3-accordion-panel>\n  ",
+                    styles: [
+                        ":host {\n      display: block;\n      overflow: hidden;\n      position: relative;\n    }\n"
+                    ],
+                    host: {
+                        role: 'tablist',
+                        'aria-multiselectable': 'true'
+                    }
+                },] },
+    ];
+    /** @nocollapse */
+    AccordionComponent.ctorParameters = function () { return [
+        { type: core_1.Renderer, },
+        { type: core_1.ElementRef, },
+        { type: core_1.NgZone, },
+    ]; };
+    AccordionComponent.propDecorators = {
+        'panels': [{ type: core_1.Input },],
+        'selected': [{ type: core_1.Output },],
+        '_panels': [{ type: core_1.ViewChildren, args: [accordion_panel_component_1.AccordionPanelComponent,] },],
+    };
     return AccordionComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Array)
-], AccordionComponent.prototype, "panels", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", core_1.EventEmitter)
-], AccordionComponent.prototype, "selected", void 0);
-__decorate([
-    core_1.ViewChildren(accordion_panel_component_1.AccordionPanelComponent),
-    __metadata("design:type", core_1.QueryList)
-], AccordionComponent.prototype, "_panels", void 0);
-AccordionComponent = __decorate([
-    core_1.Component({
-        selector: 'j3-accordion',
-        template: "\n    <j3-accordion-panel\n      class=\"accordion-panel\"\n      [ngClass]=\"{animatable: initialized}\"\n      *ngFor=\"let panel of panels; let i = index;\"\n      [panel]=\"panel\"\n      [index]=\"i\"\n      (expand)=\"expandAccordion($event)\"\n      (action)=\"navigateTo($event)\"\n      role=\"tabpanel\"\n    ></j3-accordion-panel>\n  ",
-        styles: [
-            ":host {\n      display: block;\n      overflow: hidden;\n      position: relative;\n    }\n"
-        ],
-        host: {
-            role: 'tablist',
-            'aria-multiselectable': 'true'
-        }
-    }),
-    __metadata("design:paramtypes", [core_1.Renderer,
-        core_1.ElementRef,
-        core_1.NgZone])
-], AccordionComponent);
 exports.AccordionComponent = AccordionComponent;
 //# sourceMappingURL=accordion.component.js.map

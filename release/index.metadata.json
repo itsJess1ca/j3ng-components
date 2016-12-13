@@ -1,0 +1,1 @@
+[{"__symbolic":"module","version":2,"metadata":{},"exports":[{"from":"./j3components.module"},{"from":"./accordion"},{"from":"./syntax-highlighter"}]},{"__symbolic":"module","exports":[{"from":"./j3components.module"},{"from":"./accordion"},{"from":"./syntax-highlighter"}],"metadata":{},"version":1}]
