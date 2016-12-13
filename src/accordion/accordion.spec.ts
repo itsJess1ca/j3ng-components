@@ -1,4 +1,4 @@
-import { TestBed, async, tick, fakeAsync } from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 import { AccordionModule } from './accordion.module';
 import { AccordionComponent } from './accordion.component';
 
@@ -10,9 +10,9 @@ describe('Accordion component',  () => {
     });
   });
 
-  beforeEach(async() => {
+  beforeEach(async(() => {
     TestBed.compileComponents();
-  });
+  }));
 
   describe('When the component is initialized', () => {
     let initialSetup = [
